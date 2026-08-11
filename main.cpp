@@ -1,12 +1,6 @@
 #include <iostream>
-
-int main()
-{
-    bool running = true;
-
-    while (running)
-    {
-        std::cout << "====================================\n";
+void showMenu(){ //we use void 
+     std::cout << "====================================\n";
         std::cout << " CST Achievement Manager\n";
         std::cout << "====================================\n";
         std::cout << '\n';
@@ -17,6 +11,14 @@ int main()
         std::cout << " 3. Search student by name\n";
         std::cout << " 4. Exit\n";
 
+}
+int main()
+{
+    bool running = true;
+
+    while (running)
+    {
+        showMenu();
         int choice;
 
         std::cout << "Enter Your Choice: ";
