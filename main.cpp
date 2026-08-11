@@ -1,5 +1,8 @@
 #include <iostream>
-void showMenu(){ //we use void 
+void showMenu(){ 
+// We use a void function when we want the function to do a task
+// but not return any value, such as printing something or changing a variable.
+
      std::cout << "====================================\n";
         std::cout << " CST Achievement Manager\n";
         std::cout << "====================================\n";
@@ -12,6 +15,12 @@ void showMenu(){ //we use void
         std::cout << " 4. Exit\n";
 
 }
+int getChoise(){
+    int choice;
+    std::cout<<"Enter your choise: ";
+    std::cin>>choice;
+    return choice;
+}
 int main()
 {
     bool running = true;
@@ -19,11 +28,7 @@ int main()
     while (running)
     {
         showMenu();
-        int choice;
-
-        std::cout << "Enter Your Choice: ";
-        std::cin >> choice;
-
+        int choice = getChoise();
         switch (choice)
         {
             case 1:
