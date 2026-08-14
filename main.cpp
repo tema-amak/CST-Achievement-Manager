@@ -15,12 +15,14 @@ void showMenu()
     std::cout << "====================================\n\n";
 
     std::cout << "Welcome!\n";
+    
     std::cout << " 1. Show all students\n";
     std::cout << " 2. Search student by ID\n";
     std::cout << " 3. Search student by name\n";
     std::cout << " 4. Add student\n";
     std::cout << " 5. Add achievement\n";
-    std::cout << " 6. Exit\n";
+    std::cout << " 6. Edit achievement\n";
+    std::cout << " 7. Exit\n";
 }
 
 
@@ -119,14 +121,18 @@ int main()
            break;
 
            case 6:
+           editAchievement(achievements);
+           break;
+
+           case 7:
            std::cout << "Exiting program...\n";
            running = false;
            break;
 
-           default:
-           std::cout << "Invalid choice. Please choose 1-6.\n";
+          default:
+            std::cout << "Invalid choice. Please choose 1-7.\n";
            break;
-        }
+         }
          std::cout << '\n';
      }
 

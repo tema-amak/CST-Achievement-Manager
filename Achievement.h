@@ -34,3 +34,6 @@ void addAchievement(
     const std::vector<Student>& students,
     std::vector<Achievement>& achievements
 );
+void editAchievement(
+    std::vector<Achievement>& achievements
+);

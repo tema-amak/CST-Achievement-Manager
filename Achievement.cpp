@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <limits>
 
 void loadAchievements(std::vector<Achievement>& achievements)
 {
@@ -149,4 +150,94 @@ void addAchievement(
     saveAchievements(achievements);
 
     std::cout << "Achievement added successfully.\n";
+}
+void editAchievement(std::vector<Achievement>& achievements)
+{
+    std::string studentId;
+
+    std::cout << "Enter student ID: ";
+    std::cin >> studentId;
+
+    std::vector<std::size_t> matchingIndexes;
+
+    for (std::size_t i = 0; i < achievements.size(); i++)
+    {
+        if (achievements[i].studentId == studentId)
+        {
+            matchingIndexes.push_back(i);
+        }
+    }
+
+    if (matchingIndexes.empty())
+    {
+        std::cout << "No achievements found for this student.\n";
+        return;
+    }
+
+    std::cout << "\nAchievements:\n";
+
+    for (std::size_t i = 0; i < matchingIndexes.size(); i++)
+    {
+        const Achievement& achievement =
+            achievements[matchingIndexes[i]];
+
+        std::cout << i + 1 << ". "
+                  << achievement.title
+                  << " - "
+                  << achievement.result
+                  << '\n';
+    }
+
+    int choice;
+
+    std::cout << "Choose achievement to edit: ";
+
+    if (!(std::cin >> choice))
+    {
+        std::cout << "Invalid input.\n";
+
+        std::cin.clear();
+        std::cin.ignore(
+            std::numeric_limits<std::streamsize>::max(),
+            '\n'
+        );
+
+        return;
+    }
+
+    if (choice < 1 ||
+        choice > static_cast<int>(matchingIndexes.size()))
+    {
+        std::cout << "Invalid achievement number.\n";
+        return;
+    }
+
+    std::size_t actualIndex = matchingIndexes[choice - 1];
+
+    Achievement& achievement = achievements[actualIndex];
+
+    std::cout << "Enter academic year: ";
+    std::getline(std::cin >> std::ws, achievement.academicYear);
+
+    std::cout << "Enter category: ";
+    std::getline(std::cin, achievement.category);
+
+    std::cout << "Enter achievement title: ";
+    std::getline(std::cin, achievement.title);
+
+    std::cout << "Enter result: ";
+    std::getline(std::cin, achievement.result);
+
+    std::cout << "Enter level: ";
+    std::getline(std::cin, achievement.level);
+
+    std::cout << "Enter certificate status: ";
+    std::getline(std::cin, achievement.certificate);
+
+    std::cout << "Enter remarks: ";
+    std::getline(std::cin, achievement.remarks);
+
+    saveAchievements(achievements);
+
+    std::cout << "Achievement updated successfully.\n";
 }
