@@ -241,3 +241,74 @@ void editAchievement(std::vector<Achievement>& achievements)
 
     std::cout << "Achievement updated successfully.\n";
 }
+void deleteAchievement(std::vector<Achievement>& achievements)
+{
+    std::string studentId;
+
+    std::cout << "Enter student ID: ";
+    std::cin >> studentId;
+
+    std::vector<std::size_t> matchingIndexes;
+
+    for (std::size_t i = 0; i < achievements.size(); i++)
+    {
+        if (achievements[i].studentId == studentId)
+        {
+            matchingIndexes.push_back(i);
+        }
+    }
+
+    if (matchingIndexes.empty())
+    {
+        std::cout << "No achievements found for this student.\n";
+        return;
+    }
+
+    std::cout << "\nAchievements:\n";
+
+    for (std::size_t i = 0; i < matchingIndexes.size(); i++)
+    {
+        const Achievement& achievement =
+            achievements[matchingIndexes[i]];
+
+        std::cout << i + 1 << ". "
+                  << achievement.title
+                  << " - "
+                  << achievement.result
+                  << '\n';
+    }
+
+    int choice;
+
+    std::cout << "Choose achievement to delete: ";
+
+    if (!(std::cin >> choice))
+    {
+        std::cout << "Invalid input.\n";
+
+        std::cin.clear();
+        std::cin.ignore(
+            std::numeric_limits<std::streamsize>::max(),
+            '\n'
+        );
+
+        return;
+    }
+
+    if (choice < 1 ||
+        choice > static_cast<int>(matchingIndexes.size()))
+    {
+        std::cout << "Invalid achievement number.\n";
+        return;
+    }
+
+    std::size_t actualIndex = matchingIndexes[choice - 1];
+
+    achievements.erase(
+        achievements.begin() + actualIndex
+    );
+
+    saveAchievements(achievements);
+
+    std::cout << "Achievement deleted successfully.\n";
+}

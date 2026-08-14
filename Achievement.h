@@ -37,3 +37,6 @@ void addAchievement(
 void editAchievement(
     std::vector<Achievement>& achievements
 );
+void deleteAchievement(
+    std::vector<Achievement>& achievements
+);
