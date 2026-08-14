@@ -56,3 +56,9 @@ $RECYCLE.BIN/
 
 # Built Visual Studio Code Extensions
 *.vsix
+# Local project data
+students.csv
+achievements.csv
+
+# VS Code local files
+.vscode/
