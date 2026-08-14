@@ -24,7 +24,8 @@ std::cout << " 5. Add achievement\n";
 std::cout << " 6. Edit achievement\n";
 std::cout << " 7. Delete achievement\n";
 std::cout << " 8. Edit student\n";
-std::cout << " 9. Exit\n";
+std::cout << " 9. Delete student\n";
+std::cout << " 10. Exit\n";
 }
 
 
@@ -135,12 +136,16 @@ case 8:
     break;
 
 case 9:
+    deleteStudent(students, achievements);
+    break;
+
+case 10:
     std::cout << "Exiting program...\n";
     running = false;
     break;
 
 default:
-    std::cout << "Invalid choice. Please choose 1-9.\n";
+    std::cout << "Invalid choice. Please choose 1-10.\n";
     break;
          }
          std::cout << '\n';

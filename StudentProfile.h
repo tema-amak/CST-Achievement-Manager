@@ -19,3 +19,7 @@ void searchStudentByName(
     const std::vector<Student>& students,
     const std::vector<Achievement>& achievements
 );
+void deleteStudent(
+    std::vector<Student>& students,
+    std::vector<Achievement>& achievements
+);

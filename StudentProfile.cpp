@@ -68,3 +68,52 @@ void searchStudentByName(
         std::cout << "Student not found.\n";
     }
 }
+void deleteStudent(
+    std::vector<Student>& students,
+    std::vector<Achievement>& achievements
+)
+{
+    std::string studentId;
+
+    std::cout << "Enter student ID: ";
+    std::cin >> studentId;
+
+    bool found = false;
+
+    for (std::size_t i = 0; i < students.size(); i++)
+    {
+        if (students[i].id == studentId)
+        {
+            std::cout << "Student: "
+                      << students[i].name << '\n';
+
+            students.erase(students.begin() + i);
+
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+    {
+        std::cout << "Student not found.\n";
+        return;
+    }
+
+    for (std::size_t i = 0; i < achievements.size();)
+    {
+        if (achievements[i].studentId == studentId)
+        {
+            achievements.erase(achievements.begin() + i);
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    saveStudents(students);
+    saveAchievements(achievements);
+
+    std::cout << "Student and associated achievements deleted successfully.\n";
+}
