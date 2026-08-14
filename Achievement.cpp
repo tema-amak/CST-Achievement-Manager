@@ -302,6 +302,7 @@ void deleteAchievement(std::vector<Achievement>& achievements)
         return;
     }
 
+    
     std::size_t actualIndex = matchingIndexes[choice - 1];
 
     achievements.erase(

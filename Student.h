@@ -21,3 +21,4 @@ bool studentIdExists(
 void saveStudents(const std::vector<Student>& students);
 
 void addStudent(std::vector<Student>& students);
+void editStudent(std::vector<Student>& students);

@@ -95,3 +95,29 @@ void addStudent(std::vector<Student>& students)
 
     std::cout << "Student added successfully.\n";
 }
+void editStudent(std::vector<Student>& students)
+{
+    std::string studentId;
+
+    std::cout << "Enter student ID: ";
+    std::cin >> studentId;
+
+    for (Student& student : students)
+    {
+        if (student.id == studentId)
+        {
+            std::cout << "Current name: "
+                      << student.name << '\n';
+
+            std::cout << "Enter new name: ";
+            std::getline(std::cin >> std::ws, student.name);
+
+            saveStudents(students);
+
+            std::cout << "Student updated successfully.\n";
+            return;
+        }
+    }
+
+    std::cout << "Student not found.\n";
+}
