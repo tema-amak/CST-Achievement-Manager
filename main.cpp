@@ -25,7 +25,8 @@ std::cout << " 6. Edit achievement\n";
 std::cout << " 7. Delete achievement\n";
 std::cout << " 8. Edit student\n";
 std::cout << " 9. Delete student\n";
-std::cout << " 10. Exit\n";
+std::cout << " 10. Show achievements by academic year\n";
+std::cout << " 11. Exit\n";
 }
 
 
@@ -140,12 +141,16 @@ case 9:
     break;
 
 case 10:
+    showAchievementsByYear(achievements);
+    break;
+
+case 11:
     std::cout << "Exiting program...\n";
     running = false;
     break;
 
 default:
-    std::cout << "Invalid choice. Please choose 1-10.\n";
+    std::cout << "Invalid choice. Please choose 1-11.\n";
     break;
          }
          std::cout << '\n';

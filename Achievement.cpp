@@ -302,7 +302,7 @@ void deleteAchievement(std::vector<Achievement>& achievements)
         return;
     }
 
-    
+
     std::size_t actualIndex = matchingIndexes[choice - 1];
 
     achievements.erase(
@@ -312,4 +312,46 @@ void deleteAchievement(std::vector<Achievement>& achievements)
     saveAchievements(achievements);
 
     std::cout << "Achievement deleted successfully.\n";
+}
+void showAchievementsByYear(
+    const std::vector<Achievement>& achievements
+)
+{
+    std::string academicYear;
+    int count = 0;
+
+    std::cout << "Enter academic year: ";
+    std::getline(std::cin >> std::ws, academicYear);
+
+    std::cout << "\nAchievements for "
+              << academicYear
+              << ":\n";
+
+    for (const Achievement& achievement : achievements)
+    {
+        if (achievement.academicYear == academicYear)
+        {
+            count++;
+
+            std::cout << "\n" << count << ". "
+                      << achievement.title << '\n';
+
+            std::cout << "Student ID: "
+                      << achievement.studentId << '\n';
+
+            std::cout << "Category: "
+                      << achievement.category << '\n';
+
+            std::cout << "Result: "
+                      << achievement.result << '\n';
+
+            std::cout << "Level: "
+                      << achievement.level << '\n';
+        }
+    }
+
+    if (count == 0)
+    {
+        std::cout << "No achievements found for this academic year.\n";
+    }
 }

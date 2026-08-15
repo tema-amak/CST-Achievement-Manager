@@ -40,3 +40,6 @@ void editAchievement(
 void deleteAchievement(
     std::vector<Achievement>& achievements
 );
+void showAchievementsByYear(
+    const std::vector<Achievement>& achievements
+);
