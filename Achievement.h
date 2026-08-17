@@ -34,12 +34,28 @@ void addAchievement(
     const std::vector<Student>& students,
     std::vector<Achievement>& achievements
 );
+
 void editAchievement(
     std::vector<Achievement>& achievements
 );
+
 void deleteAchievement(
     std::vector<Achievement>& achievements
 );
+
+void displayAchievement(
+    const Achievement& achievement,
+    int number
+);
+
+std::string toLowerCase(std::string text);
+
+void showFilteredAchievements(
+    const std::vector<Achievement>& achievements,
+    int filterChoice,
+    const std::string& filterValue
+);
+
 void filterAchievements(
     const std::vector<Achievement>& achievements
 );

@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <limits>
+#include <cctype>
 
 void loadAchievements(std::vector<Achievement>& achievements)
 {
@@ -343,12 +344,29 @@ void displayAchievement(
     std::cout << "Remarks: "
               << achievement.remarks << '\n';
 }
+
+std::string toLowerCase(std::string text)
+{
+    for (char& character : text)
+    {
+        character = static_cast<char>(
+            std::tolower(
+                static_cast<unsigned char>(character)
+            )
+        );
+    }
+
+    return text;
+}
+
 void showFilteredAchievements(
     const std::vector<Achievement>& achievements,
     int filterChoice,
     const std::string& filterValue
 )
 {
+    std::string normalizedFilter = toLowerCase(filterValue);
+
     int count = 0;
 
     for (const Achievement& achievement : achievements)
@@ -357,28 +375,25 @@ void showFilteredAchievements(
 
         if (filterChoice == 1)
         {
-            matches =
-                achievement.academicYear == filterValue;
+            matches = achievement.academicYear == filterValue;
         }
         else if (filterChoice == 2)
         {
             matches =
-                achievement.category == filterValue;
+                toLowerCase(achievement.category)
+                == normalizedFilter;
         }
         else if (filterChoice == 3)
         {
             matches =
-                achievement.level == filterValue;
+                toLowerCase(achievement.level)
+                == normalizedFilter;
         }
 
         if (matches)
         {
             count++;
-
-            displayAchievement(
-                achievement,
-                count
-            );
+            displayAchievement(achievement, count);
         }
     }
 
@@ -387,6 +402,7 @@ void showFilteredAchievements(
         std::cout << "No matching achievements found.\n";
     }
 }
+
 void filterAchievements(
     const std::vector<Achievement>& achievements
 )
