@@ -25,7 +25,7 @@ std::cout << " 6. Edit achievement\n";
 std::cout << " 7. Delete achievement\n";
 std::cout << " 8. Edit student\n";
 std::cout << " 9. Delete student\n";
-std::cout << " 10. Show achievements by academic year\n";
+std::cout << " 10. Filter achievements\n";
 std::cout << " 11. Exit\n";
 }
 
@@ -141,7 +141,7 @@ case 9:
     break;
 
 case 10:
-    showAchievementsByYear(achievements);
+    filterAchievements(achievements);
     break;
 
 case 11:

@@ -313,45 +313,135 @@ void deleteAchievement(std::vector<Achievement>& achievements)
 
     std::cout << "Achievement deleted successfully.\n";
 }
-void showAchievementsByYear(
-    const std::vector<Achievement>& achievements
+
+void displayAchievement(
+    const Achievement& achievement,
+    int number
 )
 {
-    std::string academicYear;
+    std::cout << "\n" << number << ". "
+              << achievement.title << '\n';
+
+    std::cout << "Student ID: "
+              << achievement.studentId << '\n';
+
+    std::cout << "Academic Year: "
+              << achievement.academicYear << '\n';
+
+    std::cout << "Category: "
+              << achievement.category << '\n';
+
+    std::cout << "Result: "
+              << achievement.result << '\n';
+
+    std::cout << "Level: "
+              << achievement.level << '\n';
+
+    std::cout << "Certificate: "
+              << achievement.certificate << '\n';
+
+    std::cout << "Remarks: "
+              << achievement.remarks << '\n';
+}
+void showFilteredAchievements(
+    const std::vector<Achievement>& achievements,
+    int filterChoice,
+    const std::string& filterValue
+)
+{
     int count = 0;
-
-    std::cout << "Enter academic year: ";
-    std::getline(std::cin >> std::ws, academicYear);
-
-    std::cout << "\nAchievements for "
-              << academicYear
-              << ":\n";
 
     for (const Achievement& achievement : achievements)
     {
-        if (achievement.academicYear == academicYear)
+        bool matches = false;
+
+        if (filterChoice == 1)
+        {
+            matches =
+                achievement.academicYear == filterValue;
+        }
+        else if (filterChoice == 2)
+        {
+            matches =
+                achievement.category == filterValue;
+        }
+        else if (filterChoice == 3)
+        {
+            matches =
+                achievement.level == filterValue;
+        }
+
+        if (matches)
         {
             count++;
 
-            std::cout << "\n" << count << ". "
-                      << achievement.title << '\n';
-
-            std::cout << "Student ID: "
-                      << achievement.studentId << '\n';
-
-            std::cout << "Category: "
-                      << achievement.category << '\n';
-
-            std::cout << "Result: "
-                      << achievement.result << '\n';
-
-            std::cout << "Level: "
-                      << achievement.level << '\n';
+            displayAchievement(
+                achievement,
+                count
+            );
         }
     }
 
     if (count == 0)
     {
-        std::cout << "No achievements found for this academic year.\n";
+        std::cout << "No matching achievements found.\n";
     }
+}
+void filterAchievements(
+    const std::vector<Achievement>& achievements
+)
+{
+    int choice;
+    std::string filterValue;
+
+    std::cout << "\nFilter achievements by:\n";
+    std::cout << "1. Academic year\n";
+    std::cout << "2. Category\n";
+    std::cout << "3. Level\n";
+
+    std::cout << "Enter your choice: ";
+
+    if (!(std::cin >> choice))
+    {
+        std::cout << "Invalid input.\n";
+
+        std::cin.clear();
+
+        std::cin.ignore(
+            std::numeric_limits<std::streamsize>::max(),
+            '\n'
+        );
+
+        return;
+    }
+
+    if (choice < 1 || choice > 3)
+    {
+        std::cout << "Invalid filter choice.\n";
+        return;
+    }
+
+    if (choice == 1)
+    {
+        std::cout << "Enter academic year: ";
+    }
+    else if (choice == 2)
+    {
+        std::cout << "Enter category: ";
+    }
+    else
+    {
+        std::cout << "Enter level: ";
+    }
+
+    std::getline(
+        std::cin >> std::ws,
+        filterValue
+    );
+
+    showFilteredAchievements(
+        achievements,
+        choice,
+        filterValue
+    );
 }
