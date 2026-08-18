@@ -26,9 +26,9 @@ std::cout << " 7. Delete achievement\n";
 std::cout << " 8. Edit student\n";
 std::cout << " 9. Delete student\n";
 std::cout << " 10. Filter achievements\n";
-std::cout << " 11. Exit\n";
+std::cout << " 11. Search achievement by title\n";
+std::cout << " 12. Exit\n";
 }
-
 
 // This function gets a valid NUMBER from the user.
 int getChoice()
@@ -145,12 +145,16 @@ case 10:
     break;
 
 case 11:
+    searchAchievementByTitle(achievements);
+    break;
+
+case 12:
     std::cout << "Exiting program...\n";
     running = false;
     break;
 
 default:
-    std::cout << "Invalid choice. Please choose 1-11.\n";
+    std::cout << "Invalid choice. Please choose 1-12.\n";
     break;
          }
          std::cout << '\n';

@@ -59,3 +59,6 @@ void showFilteredAchievements(
 void filterAchievements(
     const std::vector<Achievement>& achievements
 );
+void searchAchievementByTitle(
+    const std::vector<Achievement>& achievements
+);

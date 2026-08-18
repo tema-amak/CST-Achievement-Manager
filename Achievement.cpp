@@ -461,3 +461,38 @@ void filterAchievements(
         filterValue
     );
 }
+void searchAchievementByTitle(
+    const std::vector<Achievement>& achievements
+)
+{
+    std::string searchText;
+    int count = 0;
+
+    std::cout << "Enter achievement title or keyword: ";
+    std::getline(std::cin >> std::ws, searchText);
+
+    std::string normalizedSearch =
+        toLowerCase(searchText);
+
+    for (const Achievement& achievement : achievements)
+    {
+        std::string normalizedTitle =
+            toLowerCase(achievement.title);
+
+        if (normalizedTitle.find(normalizedSearch)
+            != std::string::npos)
+        {
+            count++;
+
+            displayAchievement(
+                achievement,
+                count
+            );
+        }
+    }
+
+    if (count == 0)
+    {
+        std::cout << "No matching achievements found.\n";
+    }
+}
