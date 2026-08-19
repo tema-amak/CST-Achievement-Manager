@@ -7,6 +7,7 @@
 #include "Student.h"
 #include "Achievement.h"
 #include "StudentProfile.h"
+#include "Statistics.h"
 
 void showMenu()
 {
@@ -27,7 +28,8 @@ std::cout << " 8. Edit student\n";
 std::cout << " 9. Delete student\n";
 std::cout << " 10. Filter achievements\n";
 std::cout << " 11. Search achievement by title\n";
-std::cout << " 12. Exit\n";
+std::cout << " 12. Show statistics\n";
+std::cout << " 13. Exit\n";
 }
 
 // This function gets a valid NUMBER from the user.
@@ -149,12 +151,16 @@ case 11:
     break;
 
 case 12:
+    showStatistics(students, achievements);
+    break;
+
+case 13:
     std::cout << "Exiting program...\n";
     running = false;
     break;
 
 default:
-    std::cout << "Invalid choice. Please choose 1-12.\n";
+    std::cout << "Invalid choice. Please choose 1-13.\n";
     break;
          }
          std::cout << '\n';
