@@ -1,12 +1,28 @@
 #include "Statistics.h"
-
 #include <iostream>
+#include <map>
 
 void showStatistics(
+    
     const std::vector<Student>& students,
     const std::vector<Achievement>& achievements
 )
+{   std::map<std::string, int> categoryCounts;
+
+for (const Achievement& achievement : achievements)
 {
+    categoryCounts[achievement.category]++;
+}
+
+std::cout << "\nAchievements by category:\n";
+
+for (const auto& pair : categoryCounts)
+{
+    std::cout << pair.first
+              << ": "
+              << pair.second
+              << '\n';
+}
     std::cout << "\n===== Statistics =====\n";
 
     std::cout << "Total students: "
